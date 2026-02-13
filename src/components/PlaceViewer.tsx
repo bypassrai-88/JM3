@@ -131,6 +131,21 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
               }
               animationDelay={0.35 + index * 0.07}
               expandedHotspot={expandedHotspot}
+              disableHover={isDragging}
+              onHotspotHoverIn={(id) => {
+                if (collapseTimerRef.current) {
+                  clearTimeout(collapseTimerRef.current);
+                  collapseTimerRef.current = null;
+                }
+                setExpandedHotspot(id);
+              }}
+              onHotspotHoverOut={() => {
+                if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
+                collapseTimerRef.current = setTimeout(() => {
+                  setExpandedHotspot(null);
+                  collapseTimerRef.current = null;
+                }, 200);
+              }}
               onHotspotClick={(h) => {
                 if (expandedHotspot === h.id) {
                   if (collapseTimerRef.current) {

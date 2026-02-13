@@ -35,6 +35,13 @@ export function NavMenu() {
             >
               ← Back to Start
             </Link>
+            <Link
+              href="/shop"
+              className="block px-3 py-1.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Shop All
+            </Link>
             <div className="my-1 border-t border-white/10" />
             {places.map((place) => (
               <Link

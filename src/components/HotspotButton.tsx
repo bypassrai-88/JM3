@@ -9,8 +9,11 @@ interface HotspotButtonProps {
   onClick?: () => void;
   onRoomNavigate?: (target: string) => void;
   onHotspotClick?: (hotspot: Hotspot) => void;
+  onHotspotHoverIn?: (hotspotId: string) => void;
+  onHotspotHoverOut?: () => void;
   expandedHotspot?: string | null;
   animationDelay?: number;
+  disableHover?: boolean;
 }
 
 export function HotspotButton({
@@ -19,8 +22,11 @@ export function HotspotButton({
   onClick,
   onRoomNavigate,
   onHotspotClick,
+  onHotspotHoverIn,
+  onHotspotHoverOut,
   expandedHotspot = null,
   animationDelay = 0,
+  disableHover = false,
 }: HotspotButtonProps) {
   const router = useRouter();
   const { position } = hotspot;
@@ -54,6 +60,13 @@ export function HotspotButton({
     opacity: 0,
   };
 
+  const handleMouseEnter = () => {
+    if (!disableHover) onHotspotHoverIn?.(hotspot.id);
+  };
+  const handleMouseLeave = () => {
+    onHotspotHoverOut?.();
+  };
+
   return (
     <div style={wrapperStyle} className="flex items-center justify-center">
       <button
@@ -64,6 +77,8 @@ export function HotspotButton({
             : "w-5 h-5 p-0 border-2 hover:scale-125 animate-pulse-ring"
         }`}
         onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         aria-label={isExpanded ? label : "View hotspot"}
       >
       {isExpanded ? (
