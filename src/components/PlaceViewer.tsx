@@ -93,17 +93,22 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
       className={`relative w-full h-screen overflow-auto bg-neutral-900 scroll-smooth ${
         isExiting ? "animate-room-exit" : "animate-room-enter"
       } ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
-      style={{ overscrollBehavior: "contain" }}
+      style={{ overscrollBehavior: "contain", WebkitOverflowScrolling: "touch", touchAction: "pan-x pan-y" }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Zoomed content – larger than viewport, scroll to pan */}
+      {/* Zoomed content – larger than viewport, scroll to pan. Use vmax on mobile so portrait gets horizontal scroll too. */}
       <div
         ref={contentRef}
         className="relative shrink-0"
-        style={{ width: `${ZOOM * 100}vw`, height: `${ZOOM * 100}vh`, minWidth: "100%", minHeight: "100%" }}
+        style={{
+          width: `max(${ZOOM * 100}vw, ${ZOOM * 100}vmax)`,
+          height: `max(${ZOOM * 100}vh, ${ZOOM * 100}vmax)`,
+          minWidth: "100%",
+          minHeight: "100%",
+        }}
       >
         <Image
           src={place.backgroundImage}
