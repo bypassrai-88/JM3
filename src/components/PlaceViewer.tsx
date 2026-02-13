@@ -99,13 +99,13 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Content sized to viewport – full image visible, no cropping */}
+      {/* Portrait phones: width from vh so container is landscape and full image scrolls horizontally */}
       <div
         ref={contentRef}
         className="relative shrink-0"
         style={{
-          width: `${ZOOM * 100}vw`,
-          height: `${ZOOM * 100}vh`,
+          width: `max(${ZOOM * 100}vw, calc(${ZOOM * 100}vh * 16 / 9))`,
+          height: `max(${ZOOM * 100}vh, calc(${ZOOM * 100}vw * 9 / 16))`,
           minWidth: "100%",
           minHeight: "100%",
         }}
