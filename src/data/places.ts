@@ -60,9 +60,9 @@ export const places: Place[] = [
     backgroundImage: "/golf-simulator.png?v=2",
     hotspots: [
       {
-        id: "product-driver",
+        id: "product-polo",
         type: "product",
-        productHandle: "premium-driver",
+        productHandle: "premium-golf-polo",
         position: { x: 35, y: 55 },
       },
       {
