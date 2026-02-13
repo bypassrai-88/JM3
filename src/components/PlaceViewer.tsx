@@ -99,13 +99,13 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Zoomed content – larger than viewport, scroll to pan. Use vmax on mobile so portrait gets horizontal scroll too. */}
+      {/* Content sized to viewport – full image visible, no cropping */}
       <div
         ref={contentRef}
         className="relative shrink-0"
         style={{
-          width: `max(${ZOOM * 100}vw, ${ZOOM * 100}vmax)`,
-          height: `max(${ZOOM * 100}vh, ${ZOOM * 100}vmax)`,
+          width: `${ZOOM * 100}vw`,
+          height: `${ZOOM * 100}vh`,
           minWidth: "100%",
           minHeight: "100%",
         }}
@@ -114,7 +114,7 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
           src={place.backgroundImage}
           alt={place.name}
           fill
-          className="object-cover"
+          className="object-contain"
           sizes="(max-width: 1920px) 2700px, 5400px"
           quality={95}
           priority
