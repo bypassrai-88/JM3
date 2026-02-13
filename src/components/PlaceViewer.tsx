@@ -114,7 +114,7 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
           src={place.backgroundImage}
           alt={place.name}
           fill
-          className="object-contain"
+          className="object-cover"
           sizes="(max-width: 1920px) 2700px, 5400px"
           quality={95}
           priority
