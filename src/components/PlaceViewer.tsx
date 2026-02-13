@@ -114,7 +114,7 @@ export function PlaceViewer({ place, onProductClick, onAccoladeClick, onRoomNavi
           quality={95}
           priority
           draggable={false}
-          onLoad={centerScroll}
+          onLoad={() => centerScroll(false)}
         />
         {/* Hotspots – positioned on the zoomed canvas */}
         <div className="absolute inset-0">

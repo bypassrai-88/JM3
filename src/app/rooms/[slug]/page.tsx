@@ -28,11 +28,10 @@ export default function RoomPage() {
   };
 
   const handleBack = () => {
-    if (!place) return;
     setIsExiting(true);
-    const currentSlug = place.slug;
+    const slugToUse = place?.slug;
     setTimeout(() => {
-      if (currentSlug === "clubhouse") {
+      if (slugToUse === "clubhouse") {
         router.push("/");
       } else {
         router.push("/rooms/clubhouse");
